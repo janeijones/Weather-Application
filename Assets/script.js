@@ -58,17 +58,12 @@ searchBtnEl.addEventListener("click", function(event) {
 
     storeCityList();
     renderCityList();
-
-
-
     
 });
 
 citySearchForm.addEventListener("submit", function(event) {
     event.preventDefault();
     var cityText = cityInput.value.trim();
-
-    
 
     if (cityText === ""){
         return;
@@ -82,11 +77,7 @@ citySearchForm.addEventListener("submit", function(event) {
 
     var cityApi = openWeatherApi + "q=" + cityText + "&units=imperial" + apiKey; 
     console.log(cityApi);
-    getCityApi(cityApi);
-    
-   
-
-    
+    getCityApi(cityApi);   
 });
 
 
@@ -197,17 +188,6 @@ function getFiveDayForecast(weatherApi){
 });
 
 } 
-
-                
-                
-
-
-        
-    
-    
-
-
-
 
 
 

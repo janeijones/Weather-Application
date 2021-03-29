@@ -1,3 +1,4 @@
-body {
-    display: flex;
+.future-forecast {
+    display: inline-block;
 }
+
