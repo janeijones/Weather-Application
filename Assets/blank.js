@@ -166,26 +166,31 @@ function getWeather (lat, lon) {
                         for (var i = 0; i < 5; i++)
                         {
                         var futureDayEl = document.createElement('div');
-                        futureDayEl.classList.add('future-forecast')
                         futureDayEl.classList.add('card')
-                        futureDayEl.classList.add('col-md-2')
+
+                        var forecastBodyEl = document.createElement('div');
+                        forecastBodyEl.classList.add('card-body')
+                        
                         var futureDate = moment().add([i], 'days').format('MM/DD/YY');
                         var futureTemp = parseInt(data.daily[i].temp.max);
                         var futureHumidity = parseInt(data.daily[i].humidity)           
                         var futureWeatherIcon = document.createElement('img')
                         futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/w/' + data.daily[0].weather[0].icon + '.png');
+                    
                         
-                        futureDayEl.textContent = futureDate;
-                        fiveDayForecastEl.appendChild(futureDayEl)
-                        fiveDayForecastEl.appendChild(futureWeatherIcon)
+                        forecastBodyEl.textContent = futureDate;
+                        futureDayEl.appendChild(forecastBodyEl);
+                        futureDayEl.appendChild(futureWeatherIcon);
                          
                         var futureTempEl = document.createElement('p');
                         futureTempEl.textContent = "Temp: " + futureTemp;
-                        fiveDayForecastEl.appendChild(futureTempEl);
+                        futureDayEl.appendChild(futureTempEl);
 
                         var futureHumidityEl = document.createElement('p');
                         futureHumidityEl.textContent = "Humidity: " + futureHumidity;
-                        fiveDayForecastEl.appendChild(futureHumidityEl);
+                        futureDayEl.appendChild(futureHumidityEl);
+
+                        fiveDayForecastEl.appendChild(futureDayEl)
                         }
 
                         

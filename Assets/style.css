@@ -10,11 +10,17 @@ header {
     margin-bottom: 5px;
 }
 
-.five-day-forecast{
+#forecast {
+    margin-left: 20px;
+}
+
+#five-day-forecast{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+
 
 
 #weather-icon {
