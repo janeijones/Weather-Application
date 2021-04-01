@@ -58,24 +58,26 @@
     
     
 
-    <div class = "col-md-2">
-      <div class = "container float-left">
-        <div class = "row">
-            <div id="city-info">
-            <h1 id = "city-name"></h1>
-            <img id = "weather-icon"/>
-            <p id ="city-temp"></p>
-            <p id ="city-humidity"></p>
-            <p id ="city-wind"></p>
-            <p id = "city-uvi"><span id = "index-val"></span></p>
-        </div>
+    <div class = "col-md-8">
+      <div class = "card">
+        <div class = "card-body">
+          <div id="city-info">
+              <h5 id = "city-name"></h5>
+              <img id = "weather-icon"/>
+              <p class = "card-text" id ="city-temp"></p>
+              <p class ="card-text" id ="city-humidity"></p>
+              <p class ="card-text" id ="city-wind"></p>
+              <p class ="card-text" id = "city-uvi"><span id = "index-val"></span></p>
+          </div>
         </div>
       </div>
     </div>
-  
+
+    <div class = "row">
     <h1 id = "five-day-title"></h1>
     <div class = "container" >
         <div class = "row" id = "five-day-forecast"></div>
+    </div>
     </div>
     </div>
 </div>
