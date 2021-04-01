@@ -1,4 +1,20 @@
-.future-forecast {
-    display: inline-block;
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
+header {
+    text-align: center;
+    background-color: azure;
+    color: navy;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+.future-forecast {
+    height: 20px; 
+    width: 20px;
+    border: 5px solid navy; 
+}
+
+#weather-icon {
+    background-color: red;
+}
