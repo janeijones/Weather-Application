@@ -11,18 +11,41 @@ header {
 }
 
 #forecast {
-    margin-left: 20px;
+   margin: 5px;
 }
 
 #five-day-forecast{
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
-    justify-content: space-between;
+
 }
 
+#five-day-forecast p {
+    margin: 0 auto;
+    padding: 0 auto;
+}
 
+/* #five-day-forecast .card img {
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+} */
 
-
-#weather-icon {
+#weather-icon-img {
+    align-items: center;
     background-color: red;
 }
+
+#iconDiv{
+    background-color: blue;
+    padding:2%;
+    
+}
+.image-fluid{
+    margin-left: 30%;
+}
+
+
+
