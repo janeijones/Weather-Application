@@ -29,19 +29,29 @@ function renderCityList() {
         var li = document.createElement("li");
         li.textContent = city;
         li.classList.add("list-group-item");
+        li.classList.add("city-click")
         li.setAttribute("data-index", i);
 
         cityListEl.appendChild(li);
     }
 
-    var items = cityListEl.getElementsByTagName("li");
-    console.log(cityArray)
-    
-    for (var j = 0; j < items.length; ++j) {
-        
-    }
-}
+    cityListEl.addEventListener("click", function(event) {
+        event.preventDefault();
+        var liValue = $(event.target).text();
 
+        var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + liValue + ",us&limit=2" + apiKey;
+        console.log("GEOCODE1")
+        getGeoData(geoCodeApi);
+    })
+    // console.log(cityListEl);
+    // var items = cityListEl.getElementsByTagName("li");
+    // items.addEventListener("click", function(event) {
+
+    //     console.log("here")
+
+    // })
+    
+}
 
 
 function storeCityList() {
@@ -73,6 +83,7 @@ searchBtnEl.addEventListener("click", function (event) {
  
 
     var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityText + ",us&limit=2" + apiKey;
+    console.log("GEOCODE2")
     getGeoData(geoCodeApi);
 
 });
@@ -92,6 +103,7 @@ citySearchForm.addEventListener("submit", function (event) {
     
 
     var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityText + ",us&limit=2" + apiKey;
+    console.log("GEOCODE3")
     getGeoData(geoCodeApi);
 });
 
