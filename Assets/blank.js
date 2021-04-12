@@ -35,7 +35,7 @@ function renderCityList() {
         cityListEl.appendChild(li);
     }
 
-    cityListEl.addEventListener("click", function(event) {
+    cityListEl.addEventListener("click", function (event) {
         event.preventDefault();
         var liValue = $(event.target).text();
 
@@ -50,7 +50,7 @@ function renderCityList() {
     //     console.log("here")
 
     // })
-    
+
 }
 
 
@@ -80,7 +80,7 @@ searchBtnEl.addEventListener("click", function (event) {
     cityInput.value = "";
 
     storeCityList();
- 
+
 
     var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityText + ",us&limit=2" + apiKey;
     console.log("GEOCODE2")
@@ -100,7 +100,7 @@ citySearchForm.addEventListener("submit", function (event) {
     cityInput.value = "";
 
     storeCityList();
-    
+
 
     var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityText + ",us&limit=2" + apiKey;
     console.log("GEOCODE3")
@@ -170,7 +170,7 @@ function getWeather(lat, lon) {
                         else if (uvi >= 3 && uvi <= 7) {
                             cityUviEl.innerHTML = "UV Index: " + uvi
 
-                            cityUviEl.classList.add('bg-danger')
+                            cityUviEl.classList.add('bg-warning')
                             console.log("medium uvi")
                         }
                         else {
@@ -181,44 +181,66 @@ function getWeather(lat, lon) {
                         }
                     }
 
-                    
+
                     fiveDayTitleEl.innerHTML = ("5 Day Forecast")
-                    
+
+                    var divCreated = false;
+
+                    if (!divCreated) {
+
+                        for (var i = 0; i < 5; i++) {
+                            var futureDayEl = document.createElement('div');
+                            futureDayEl.classList.add('card')
+
+                            var forecastBodyEl = document.createElement('div');
+                            forecastBodyEl.classList.add('card-body')
+
+                            var futureDate = moment().add([i], 'days').format('MM/DD/YY');
+                            var futureTemp = parseInt(data.daily[i].temp.max);
+                            var futureHumidity = parseInt(data.daily[i].humidity)
+                            var futureWeatherIcon = document.createElement('img')
+                            futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/w/' + data.daily[0].weather[0].icon + '.png');
+
+                            // var iconDivEl = document.createElement('div')
+                            // iconDivEl.setAttribute('id', 'iconDiv')
+                            // iconDivEl.appendChild(futureWeatherIcon)
+                            // futureWeatherIcon.setAttribute("class", "img-fluid")
+
+                            futureDayEl.appendChild(forecastBodyEl);
+
+                            forecastBodyEl.innerHTML = futureDate;
+                            
+
+                            // futureDayEl.appendChild(iconDivEl);
+
+                            // var futureTempEl = document.createElement('p');
+                            // futureTempEl.textContent = "Temp: " + futureTemp;
+                            // futureDayEl.appendChild(futureTempEl);
+
+                            // var futureHumidityEl = document.createElement('p');
+                            // futureHumidityEl.textContent = "Humidity: " + futureHumidity;
+                            // futureDayEl.appendChild(futureHumidityEl);
+
+                            // fiveDayForecastEl.appendChild(futureDayEl)
+
+                            divCreated = true;
+                        }
+
+                    } else {
+                        for (i = 0; i < 5; i++) {
+
+                            var futureDate = moment().add([i], 'days').format('MM/DD/YY');
+                            var futureTemp = parseInt(data.daily[i].temp.max);
+                            var futureHumidity = parseInt(data.daily[i].humidity)
+
+                            forecastBodyEl.innerHTML = futureDate;
+                            futureDayEl.appendChild(forecastBodyEl);
 
 
-                    for (var i = 0; i < 5; i++) {
-                        var futureDayEl = document.createElement('div');
-                        futureDayEl.classList.add('card')
 
-                        var forecastBodyEl = document.createElement('div');
-                        forecastBodyEl.classList.add('card-body')
-
-                        var futureDate = moment().add([i], 'days').format('MM/DD/YY');
-                        var futureTemp = parseInt(data.daily[i].temp.max);
-                        var futureHumidity = parseInt(data.daily[i].humidity)
-                        var futureWeatherIcon = document.createElement('img')
-                        futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/w/' + data.daily[0].weather[0].icon + '.png');
-
-                        var iconDivEl = document.createElement('div')
-                        iconDivEl.setAttribute('id', 'iconDiv')
-                        iconDivEl.appendChild(futureWeatherIcon)
-                        futureWeatherIcon.setAttribute("class", "img-fluid")
-
-                        forecastBodyEl.textContent = futureDate;
-                        futureDayEl.appendChild(forecastBodyEl);
-
-                        futureDayEl.appendChild(iconDivEl);
-
-                        var futureTempEl = document.createElement('p');
-                        futureTempEl.textContent = "Temp: " + futureTemp;
-                        futureDayEl.appendChild(futureTempEl);
-
-                        var futureHumidityEl = document.createElement('p');
-                        futureHumidityEl.textContent = "Humidity: " + futureHumidity;
-                        futureDayEl.appendChild(futureHumidityEl);
-
-                        fiveDayForecastEl.appendChild(futureDayEl)
+                        }
                     }
+
 
                 })//end of response.json, and function args
             } //end of (if reponse.ok)
