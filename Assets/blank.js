@@ -181,9 +181,9 @@ function getWeather(lat, lon) {
                         }
                     }
 
-                    var fiveDayTitle = document.createElement("h1")
-                    fiveDayTitle.innerHTML = ("5 Day Forecast")
-                    fiveDayTitleEl.appendChild(fiveDayTitle);
+                    
+                    fiveDayTitleEl.innerHTML = ("5 Day Forecast")
+                    
 
 
                     for (var i = 0; i < 5; i++) {
