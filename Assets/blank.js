@@ -41,16 +41,8 @@ function renderCityList() {
         var liValue = $(event.target).text();
 
         var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + liValue + ",us&limit=2" + apiKey;
-        console.log("GEOCODE1")
         getGeoData(geoCodeApi);
     })
-    // console.log(cityListEl);
-    // var items = cityListEl.getElementsByTagName("li");
-    // items.addEventListener("click", function(event) {
-
-    //     console.log("here")
-
-    // })
 
 }
 
@@ -84,7 +76,6 @@ searchBtnEl.addEventListener("click", function (event) {
 
 
     var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityText + ",us&limit=2" + apiKey;
-    console.log("GEOCODE2")
     getGeoData(geoCodeApi);
 
 });
@@ -104,7 +95,6 @@ citySearchForm.addEventListener("submit", function (event) {
 
 
     var geoCodeApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityText + ",us&limit=2" + apiKey;
-    console.log("GEOCODE3")
     getGeoData(geoCodeApi);
 });
 
@@ -147,7 +137,7 @@ function getWeather(lat, lon) {
 
 
 
-                    weatherIcon.setAttribute("src", 'http://openweathermap.org/img/w/' + icon + '.png');
+                    weatherIcon.setAttribute("src", 'http://openweathermap.org/img/wn/' + icon + '.png');
 
                     cityTempEl.innerHTML = "Temperature: " + currentTemp + " F";
 
@@ -187,45 +177,44 @@ function getWeather(lat, lon) {
 
                     const forecastEls = document.querySelectorAll('.forecast');
                     console.log(forecastEls)
-                        
-                
 
-                        for (var i = 0; i < 5; i++) {
-                            forecastEls[i].innerHTML = "";
-                           
-                            var forecastBodyEl = document.createElement('div');
-                            forecastBodyEl.classList.add('card-body')
 
-                            var futureDate = moment().add([i], 'days').format('MM/DD/YY');
-                            var futureTemp = parseInt(data.daily[i].temp.max);
-                            var futureHumidity = parseInt(data.daily[i].humidity)
-                            var futureWeatherIcon = document.createElement('img')
-                            futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon + '.png');
 
-                            var iconDivEl = document.createElement('div')
-                            iconDivEl.setAttribute('id', 'iconDiv')
-                            iconDivEl.appendChild(futureWeatherIcon)
-                            futureWeatherIcon.setAttribute("class", "img-fluid")
+                    for (var i = 0; i < 5; i++) {
+                        forecastEls[i].innerHTML = ""; //on api call, 5 day forecast cards are reset to empty 
 
-                            forecastEls[i].appendChild(forecastBodyEl);
+                        var forecastBodyEl = document.createElement('div');
+                        forecastBodyEl.classList.add('card-body')
 
-                            forecastBodyEl.innerHTML = futureDate;
-                            
+                        var futureDate = moment().add([i], 'days').format('MM/DD/YY');
+                        var futureTemp = parseInt(data.daily[i].temp.max);
+                        var futureHumidity = parseInt(data.daily[i].humidity)
 
-                            forecastEls[i].appendChild(iconDivEl);
+                        var futureWeatherIcon = document.createElement('img')
+                        futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon + '.png');
+                        var iconDivEl = document.createElement('div')
+                        iconDivEl.setAttribute('id', 'iconDiv')                        
 
-                            var futureTempEl = document.createElement('p');
-                            futureTempEl.textContent = "Temp: " + futureTemp;
-                            forecastEls[i].appendChild(futureTempEl);
+                        iconDivEl.appendChild(futureWeatherIcon)
+                        futureWeatherIcon.setAttribute("class", "img-fluid")
 
-                            var futureHumidityEl = document.createElement('p');
-                            futureHumidityEl.textContent = "Humidity: " + futureHumidity;
-                            forecastEls[i].appendChild(futureHumidityEl);
+                        forecastEls[i].appendChild(forecastBodyEl);
 
-                           
+                        forecastBodyEl.innerHTML = futureDate;
+                        forecastEls[i].appendChild(iconDivEl);
 
-                            fiveDayForecastEl.appendChild(forecastEls[i])
-                        }
+                        var futureTempEl = document.createElement('p');
+                        futureTempEl.textContent = "Temp: " + futureTemp;
+                        forecastEls[i].appendChild(futureTempEl);
+
+                        var futureHumidityEl = document.createElement('p');
+                        futureHumidityEl.textContent = "Humidity: " + futureHumidity;
+                        forecastEls[i].appendChild(futureHumidityEl);
+
+
+
+                        fiveDayForecastEl.appendChild(forecastEls[i])
+                    }
 
 
                 })//end of response.json, and function args
