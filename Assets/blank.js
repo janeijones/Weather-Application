@@ -18,6 +18,7 @@ var fiveDayForecastEl = document.querySelector('#five-day-forecast')
 var fiveDayTitleEl = document.querySelector('#five-day-title')
 
 
+
 function renderCityList() {
 
     cityListEl.innerHTML = "";
@@ -184,14 +185,14 @@ function getWeather(lat, lon) {
 
                     fiveDayTitleEl.innerHTML = ("5 Day Forecast")
 
-                    var divCreated = false;
-
-                    if (!divCreated) {
+                    const forecastEls = document.querySelectorAll('.forecast');
+                    console.log(forecastEls)
+                        
+                
 
                         for (var i = 0; i < 5; i++) {
-                            var futureDayEl = document.createElement('div');
-                            futureDayEl.classList.add('card')
-
+                            forecastEls[i].innerHTML = "";
+                           
                             var forecastBodyEl = document.createElement('div');
                             forecastBodyEl.classList.add('card-body')
 
@@ -199,47 +200,32 @@ function getWeather(lat, lon) {
                             var futureTemp = parseInt(data.daily[i].temp.max);
                             var futureHumidity = parseInt(data.daily[i].humidity)
                             var futureWeatherIcon = document.createElement('img')
-                            futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/w/' + data.daily[0].weather[0].icon + '.png');
+                            futureWeatherIcon.setAttribute("src", 'http://openweathermap.org/img/wn/' + data.daily[0].weather[0].icon + '.png');
 
-                            // var iconDivEl = document.createElement('div')
-                            // iconDivEl.setAttribute('id', 'iconDiv')
-                            // iconDivEl.appendChild(futureWeatherIcon)
-                            // futureWeatherIcon.setAttribute("class", "img-fluid")
+                            var iconDivEl = document.createElement('div')
+                            iconDivEl.setAttribute('id', 'iconDiv')
+                            iconDivEl.appendChild(futureWeatherIcon)
+                            futureWeatherIcon.setAttribute("class", "img-fluid")
 
-                            futureDayEl.appendChild(forecastBodyEl);
+                            forecastEls[i].appendChild(forecastBodyEl);
 
                             forecastBodyEl.innerHTML = futureDate;
                             
 
-                            // futureDayEl.appendChild(iconDivEl);
+                            forecastEls[i].appendChild(iconDivEl);
 
-                            // var futureTempEl = document.createElement('p');
-                            // futureTempEl.textContent = "Temp: " + futureTemp;
-                            // futureDayEl.appendChild(futureTempEl);
+                            var futureTempEl = document.createElement('p');
+                            futureTempEl.textContent = "Temp: " + futureTemp;
+                            forecastEls[i].appendChild(futureTempEl);
 
-                            // var futureHumidityEl = document.createElement('p');
-                            // futureHumidityEl.textContent = "Humidity: " + futureHumidity;
-                            // futureDayEl.appendChild(futureHumidityEl);
+                            var futureHumidityEl = document.createElement('p');
+                            futureHumidityEl.textContent = "Humidity: " + futureHumidity;
+                            forecastEls[i].appendChild(futureHumidityEl);
 
-                            // fiveDayForecastEl.appendChild(futureDayEl)
+                           
 
-                            divCreated = true;
+                            fiveDayForecastEl.appendChild(forecastEls[i])
                         }
-
-                    } else {
-                        for (i = 0; i < 5; i++) {
-
-                            var futureDate = moment().add([i], 'days').format('MM/DD/YY');
-                            var futureTemp = parseInt(data.daily[i].temp.max);
-                            var futureHumidity = parseInt(data.daily[i].humidity)
-
-                            forecastBodyEl.innerHTML = futureDate;
-                            futureDayEl.appendChild(forecastBodyEl);
-
-
-
-                        }
-                    }
 
 
                 })//end of response.json, and function args
