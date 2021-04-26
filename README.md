@@ -1,7 +1,7 @@
 # Weather Dashboard Application [![License](https://img.shields.io/badge/License-MIT-pink.svg)](https://opensource.org/licenses/MIT) 
                        
 ## Description
-Current and 5-Day Forecast are displayed for searched cities.  
+Current and 5-Day Forecast are displayed for searched cities. Local storage is used to save previously searched cities.  
 
 ## Table of Contents
 - [Installation](#installation)
