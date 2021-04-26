@@ -16,6 +16,7 @@ Navigate to the weather dashboard application <a href="https://janeijones.github
     
 ## Usage
 Search cities by clicking the search button, pressing the enter key, or selecting previously searched cities.
+![Weather Dashboard Screenhot](/Assets/weather-application-screenshot.png)
 
 ## Credits 
 Open Weather API
